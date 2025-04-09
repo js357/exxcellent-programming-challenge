@@ -20,26 +20,23 @@ import java.util.List;
  */
 public class CSVDataReader {
 
+    public static final int DAY_COLUMN = 0;
+    public static final int MAX_TEMP_COLUMN = 1;
+    public static final int MIN_TEMP_COLUMN = 2;
+
+    public static final int TEAM_COLUMN = 0;
+    public static final int SCORED_GOALS_COLUMN = 5;
+    public static final int ALLOWED_GOALS_COLUMN = 6;
+
     /**
      * Reads data from a CSV file and returns a list of records of a specified type.
      * The method parses the CSV file line by line, extracting the relevant data based on the class type
      * passed as an argument and populates a list of the corresponding records.
      *
      * <p>If the provided class type is {@link WeatherRecord}, the method expects the CSV file to contain
-     * temperature data for different days (day, max temperature, min temperature) in the following columns.
-     * <ul>
-     *   <li>Column 0: Day (int)</li>
-     *   <li>Column 1: Maximum temperature (double)</li>
-     *   <li>Column 2: Minimum temperature (double)</li>
-     * </ul>
-     *
-     * If the provided class type is {@link FootballRecord}, the method expects the CSV file to contain
-     * football data of a season (team name and goals scored/allowed) in the following columns.
-     * <ul>
-     *   <li>Column 0: Team (String)</li>
-     *   <li>Column 5: Scored goals (int)</li>
-     *   <li>Column 6: Allowed goals (int)</li>
-     * </ul>
+     * temperature data for different days (day, max temperature, min temperature) in the columns [0,1,2].
+      * If the provided class type is {@link FootballRecord}, the method expects the CSV file to contain
+     * football data of a season (team name and goals scored/allowed) in the columns [0,5,6].
      * The header row is excluded.
      *
      * @param fileName The name of the CSV file containing the data appropriate for the specified class type.
@@ -57,16 +54,16 @@ public class CSVDataReader {
             while ((line = csvReader.readNext()) != null) {
 
                 if(_class.equals(WeatherRecord.class)) {
-                    int day = Integer.parseInt(line[0]);
-                    double maxTemp = Double.parseDouble(line[1]);
-                    double minTemp = Double.parseDouble(line[2]);
+                    int day = Integer.parseInt(line[DAY_COLUMN]);
+                    double maxTemp = Double.parseDouble(line[MAX_TEMP_COLUMN]);
+                    double minTemp = Double.parseDouble(line[MIN_TEMP_COLUMN]);
 
                     records.add(_class.cast(new WeatherRecord(day, maxTemp, minTemp)));
                 }
                 else if(_class.equals(FootballRecord.class)) {
-                    String team = line[0];
-                    int scoredGoals = Integer.parseInt(line[5]);
-                    int allowedGoals = Integer.parseInt(line[6]);
+                    String team = line[TEAM_COLUMN];
+                    int scoredGoals = Integer.parseInt(line[SCORED_GOALS_COLUMN]);
+                    int allowedGoals = Integer.parseInt(line[ALLOWED_GOALS_COLUMN]);
 
                     records.add(_class.cast(new FootballRecord(team, scoredGoals, allowedGoals)));
                 }
