@@ -1,8 +1,10 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.dataprocessing;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
+import de.exxcellent.challenge.records.FootballRecord;
+import de.exxcellent.challenge.records.WeatherRecord;
 
 import java.io.FileReader;
 import java.io.IOException;

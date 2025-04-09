@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.records;
 
 /**
  * Represents statistics of football matches for a specific team.

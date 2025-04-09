@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.records;
 
 /**
  * Represents a weather record for a specific day of the month.

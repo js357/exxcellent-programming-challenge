@@ -1,4 +1,7 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.dataprocessing;
+
+import de.exxcellent.challenge.records.FootballRecord;
+import de.exxcellent.challenge.records.WeatherRecord;
 
 import java.util.List;
 

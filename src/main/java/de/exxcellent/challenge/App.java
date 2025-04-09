@@ -1,5 +1,10 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.dataprocessing.CSVDataReader;
+import de.exxcellent.challenge.dataprocessing.DataAnalyzer;
+import de.exxcellent.challenge.records.FootballRecord;
+import de.exxcellent.challenge.records.WeatherRecord;
+
 import java.io.IOException;
 import java.util.List;
 
