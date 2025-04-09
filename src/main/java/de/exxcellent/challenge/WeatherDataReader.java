@@ -12,12 +12,12 @@ import java.util.List;
 public class WeatherDataReader {
 
     public static List<WeatherRecord> readWeatherData(String fileName) throws IOException{
-        List<WeatherRecord> records = new ArrayList<WeatherRecord>();
+        List<WeatherRecord> records = new ArrayList<>();
 
         try(CSVReader csvReader = new CSVReaderBuilder(new FileReader(fileName))
                 .withSkipLines(1)
                 .build()) {
-            String[] line = null;
+            String[] line;
             while ((line = csvReader.readNext()) != null) {
 
                 int day = Integer.parseInt(line[0]);
