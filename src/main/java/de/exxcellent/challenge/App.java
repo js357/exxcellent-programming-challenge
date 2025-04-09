@@ -27,17 +27,17 @@ public final class App {
 
         try {
             // Weather challenge
-            List<WeatherRecord> weatherRecords = CSVDataReader.readWeatherData(weatherDataPath);
-            int dayWithSmallestTempSpread = DataAnalyzer.findDayWithSmallestTempSpread(weatherRecords);
-            System.out.printf("Day with smallest temperature spread : %d%n", dayWithSmallestTempSpread);
+            List<WeatherRecord> weatherRecords = CSVDataReader.readData(weatherDataPath, WeatherRecord.class);
+            String dayWithSmallestTempSpread = DataAnalyzer.findDataWithSmallestSpread(weatherRecords);
+            System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
         } catch (IOException e) {
             System.err.println("Error reading the weather file: " + e.getMessage());
         }
 
         try{
             // Football challenge
-            List<FootballRecord> footballRecords = CSVDataReader.readFootballData(footballDataPath);
-            String teamWithSmallestGoalSpread = DataAnalyzer.findTeamWithSmallestGoalSpread(footballRecords);
+            List<FootballRecord> footballRecords = CSVDataReader.readData(footballDataPath, FootballRecord.class);
+            String teamWithSmallestGoalSpread = DataAnalyzer.findDataWithSmallestSpread(footballRecords);
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
 
         } catch (IOException e) {

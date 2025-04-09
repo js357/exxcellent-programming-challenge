@@ -3,6 +3,7 @@ package de.exxcellent.challenge.dataprocessing;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
+import de.exxcellent.challenge.records.BaseRecord;
 import de.exxcellent.challenge.records.FootballRecord;
 import de.exxcellent.challenge.records.WeatherRecord;
 
@@ -20,58 +21,34 @@ import java.util.List;
 public class CSVDataReader {
 
     /**
-     * Reads weather data from a CSV file and returns a list of {@link WeatherRecord} objects.
+     * Reads data from a CSV file and returns a list of records of a specified type.
+     * The method parses the CSV file line by line, extracting the relevant data based on the class type
+     * passed as an argument and populates a list of the corresponding records.
      *
-     * <p>The CSV file is expected to contain data including the three columns:
+     * <p>If the provided class type is {@link WeatherRecord}, the method expects the CSV file to contain
+     * temperature data for different days (day, max temperature, min temperature) in the following columns.
      * <ul>
      *   <li>Column 0: Day (int)</li>
      *   <li>Column 1: Maximum temperature (double)</li>
      *   <li>Column 2: Minimum temperature (double)</li>
      * </ul>
-     * The header row is excluded.
      *
-     * @param fileName The name of the CSV file containing the weather data.
-     * @return A list of {@link WeatherRecord} objects representing the weather data.
-     * @throws IOException If an I/O error occurs while reading the file.
-     */
-    public static List<WeatherRecord> readWeatherData(String fileName) throws IOException {
-        List<WeatherRecord> records = new ArrayList<>();
-
-        try(CSVReader csvReader = new CSVReaderBuilder(new FileReader(fileName))
-                .withSkipLines(1)
-                .build()) {
-            String[] line;
-            while ((line = csvReader.readNext()) != null) {
-
-                int day = Integer.parseInt(line[0]);
-                double maxTemp = Double.parseDouble(line[1]);
-                double minTemp = Double.parseDouble(line[2]);
-
-                records.add(new WeatherRecord(day, maxTemp, minTemp));
-            }
-        } catch (CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
-        return records;
-    }
-
-    /**
-     * Reads football data from a CSV file and returns a list of {@link FootballRecord} objects.
-     *
-     * <p>The CSV file is expected to contain data including the three columns:
+     * If the provided class type is {@link FootballRecord}, the method expects the CSV file to contain
+     * football data of a season (team name and goals scored/allowed) in the following columns.
      * <ul>
      *   <li>Column 0: Team (String)</li>
-     *   <li>Column 5: Scored Goals (int)</li>
-     *   <li>Column 6: Allowed Goals (int)</li>
+     *   <li>Column 1: Scored goals (int)</li>
+     *   <li>Column 2: Allowed goals (int)</li>
      * </ul>
      * The header row is excluded.
      *
-     * @param fileName The name of the CSV file containing the football data.
-     * @return A list of {@link FootballRecord} objects representing the football data.
+     * @param fileName The name of the CSV file containing the data appropriate for the specified class type.
+     * @param _class The class type {@code <T>} of the record that extends {@link BaseRecord}.
+     * @return A list of record objects of the specified class type representing the csv data.
      * @throws IOException If an I/O error occurs while reading the file.
      */
-    public static List<FootballRecord> readFootballData(String fileName) throws IOException {
-        List<FootballRecord> records = new ArrayList<>();
+    public static <T extends BaseRecord> List<T> readData(String fileName, Class<T> _class) throws IOException {
+        List<T> records = new ArrayList<>();
 
         try(CSVReader csvReader = new CSVReaderBuilder(new FileReader(fileName))
                 .withSkipLines(1)
@@ -79,11 +56,20 @@ public class CSVDataReader {
             String[] line;
             while ((line = csvReader.readNext()) != null) {
 
-                String team = line[0];
-                int scoredGoals = Integer.parseInt(line[5]);
-                int allowedGoals = Integer.parseInt(line[6]);
+                if(_class.equals(WeatherRecord.class)) {
+                    int day = Integer.parseInt(line[0]);
+                    double maxTemp = Double.parseDouble(line[1]);
+                    double minTemp = Double.parseDouble(line[2]);
 
-                records.add(new FootballRecord(team, scoredGoals, allowedGoals));
+                    records.add(_class.cast(new WeatherRecord(day, maxTemp, minTemp)));
+                }
+                else if(_class.equals(FootballRecord.class)) {
+                    String team = line[0];
+                    int scoredGoals = Integer.parseInt(line[5]);
+                    int allowedGoals = Integer.parseInt(line[6]);
+
+                    records.add(_class.cast(new FootballRecord(team, scoredGoals, allowedGoals)));
+                }
             }
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
