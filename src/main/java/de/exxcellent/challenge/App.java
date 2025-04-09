@@ -22,19 +22,26 @@ public final class App {
      */
     public static void main(String... args) {
 
+        String weatherDataPath = "src/main/resources/de/exxcellent/challenge/weather.csv";
+        String footballDataPath = "src/main/resources/de/exxcellent/challenge/football.csv";
+
         try {
             // Weather challenge
-            List<WeatherRecord> weatherRecords = CSVDataReader.readWeatherData("src/main/resources/de/exxcellent/challenge/weather.csv");
+            List<WeatherRecord> weatherRecords = CSVDataReader.readWeatherData(weatherDataPath);
             int dayWithSmallestTempSpread = DataAnalyzer.findDayWithSmallestTempSpread(weatherRecords);
             System.out.printf("Day with smallest temperature spread : %d%n", dayWithSmallestTempSpread);
+        } catch (IOException e) {
+            System.err.println("Error reading the weather file: " + e.getMessage());
+        }
 
+        try{
             // Football challenge
-            List<FootballRecord> footballRecords = CSVDataReader.readFootballData("src/main/resources/de/exxcellent/challenge/football.csv");
+            List<FootballRecord> footballRecords = CSVDataReader.readFootballData(footballDataPath);
             String teamWithSmallestGoalSpread = DataAnalyzer.findTeamWithSmallestGoalSpread(footballRecords);
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error reading the football file: " + e.getMessage());
         }
     }
 }
