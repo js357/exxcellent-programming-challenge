@@ -9,9 +9,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A utility class for reading weather data from a CSV file.
+ *
+ * <p>The CSV file should have the following format (excluding the header row):
+ * <ul>
+ *   <li>Day (int)</li>
+ *   <li>Maximum temperature (double)</li>
+ *   <li>Minimum temperature (double)</li>
+ * </ul>
+ *
+ * <p>The {@code WeatherDataReader} class reads each row of the CSV file, parses the data, and creates a {@link WeatherRecord}
+ * for each row, which is added to the list returned by the {@code readWeatherData} method.
+ */
 public class WeatherDataReader {
 
-    public static List<WeatherRecord> readWeatherData(String fileName) throws IOException{
+    /**
+     * Reads weather data from a CSV file and returns a list of {@link WeatherRecord} objects.
+     *
+     * <p>This method assumes the CSV file contains data with three columns: the day of the month,
+     * the maximum temperature, and the minimum temperature. The first row is skipped, assuming it contains headers.
+     *
+     * @param fileName The name of the CSV file containing the weather data.
+     * @return A list of {@link WeatherRecord} objects representing the weather data.
+     * @throws IOException If an I/O error occurs while reading the file.
+     * @throws CsvValidationException If the CSV file is malformed or cannot be parsed.
+     */
+    public static List<WeatherRecord> readWeatherData(String fileName) throws IOException, CsvValidationException {
         List<WeatherRecord> records = new ArrayList<>();
 
         try(CSVReader csvReader = new CSVReaderBuilder(new FileReader(fileName))
