@@ -37,8 +37,8 @@ public class CSVDataReader {
      * football data of a season (team name and goals scored/allowed) in the following columns.
      * <ul>
      *   <li>Column 0: Team (String)</li>
-     *   <li>Column 1: Scored goals (int)</li>
-     *   <li>Column 2: Allowed goals (int)</li>
+     *   <li>Column 5: Scored goals (int)</li>
+     *   <li>Column 6: Allowed goals (int)</li>
      * </ul>
      * The header row is excluded.
      *
@@ -72,7 +72,7 @@ public class CSVDataReader {
                 }
             }
         } catch (CsvValidationException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error parsing the records file (invalid CSV data or structure): " + e.getMessage());
         }
         return records;
     }

@@ -14,12 +14,24 @@ public class WeatherRecord extends BaseRecord {
     private final double maxTemp;
     private final double minTemp;
 
+    /**
+     * Constructs a {@link WeatherRecord} with the given day, maximum and minimum temperature.
+     *
+     * @param day The day of the record.
+     * @param maxTemp The maximum temperature recorded for the given day.
+     * @param minTemp The minimum temperature recorded for the given day.
+     */
     public WeatherRecord(int day, double maxTemp, double minTemp) {
         this.day = day;
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
     }
 
+    /**
+     * Gets the day associated with this weather record.
+     *
+     * @return The day of the record as an {@code int}.
+     */
     public int getDay() {
         return day;
     }
