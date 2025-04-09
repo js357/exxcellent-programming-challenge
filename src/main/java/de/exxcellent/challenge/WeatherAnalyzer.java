@@ -4,17 +4,17 @@ import java.util.List;
 
 public class WeatherAnalyzer {
 
-    public static int findDayWithSmallestTempSpread(List<WeatherRecord> records) {
+    public static int findDayWithSmallestTempSpread(List<WeatherRecord> weatherRecords) {
         WeatherRecord dayWithSmallestSpread = null;
         double smallestTempSpread = Double.MAX_VALUE;
 
-        for (WeatherRecord record : records) {
-            double spread = record.getTempSpread();
+        for (WeatherRecord weatherRecord : weatherRecords) {
+            double spread = weatherRecord.getTempSpread();
             if (spread < smallestTempSpread) {
                 smallestTempSpread = spread;
-                dayWithSmallestSpread = record;
+                dayWithSmallestSpread = weatherRecord;
             }
         }
-        return dayWithSmallestSpread != null ? dayWithSmallestSpread.getDay() : -1;
+        return dayWithSmallestSpread != null ? dayWithSmallestSpread.day() : -1;
     }
 }
