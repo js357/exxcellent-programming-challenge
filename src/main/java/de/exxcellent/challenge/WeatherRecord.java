@@ -1,7 +1,7 @@
 package de.exxcellent.challenge;
 
 /**
- * Represents a weather record for a specific day with maximum and minimum temperature values.
+ * Represents a weather record for a specific day of the month.
  *
  * <p>The {@code WeatherRecord} class stores information about a specific day of the month, the maximum temperature,
  * and the minimum temperature. It provides a method to calculate the difference (spread) between the maximum
