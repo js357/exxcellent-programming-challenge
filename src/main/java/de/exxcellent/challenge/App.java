@@ -1,5 +1,7 @@
 package de.exxcellent.challenge;
 
+import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public final class App {
             String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
 
-        } catch (IOException e) {
+        } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
     }
