@@ -23,10 +23,12 @@ public final class App {
     public static void main(String... args) {
 
         try {
+            // Weather challenge
             List<WeatherRecord> weatherRecords = CSVDataReader.readWeatherData("src/main/resources/de/exxcellent/challenge/weather.csv");
             int dayWithSmallestTempSpread = DataAnalyzer.findDayWithSmallestTempSpread(weatherRecords);
             System.out.printf("Day with smallest temperature spread : %d%n", dayWithSmallestTempSpread);
 
+            // Football challenge
             List<FootballRecord> footballRecords = CSVDataReader.readFootballData("src/main/resources/de/exxcellent/challenge/football.csv");
             String teamWithSmallestGoalSpread = DataAnalyzer.findTeamWithSmallestGoalSpread(footballRecords);
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
