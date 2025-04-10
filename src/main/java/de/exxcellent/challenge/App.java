@@ -15,7 +15,6 @@ import java.util.List;
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  */
 public final class App {
-
     /**
      * This is the main entry method of your program.
      * @param args The CLI arguments passed

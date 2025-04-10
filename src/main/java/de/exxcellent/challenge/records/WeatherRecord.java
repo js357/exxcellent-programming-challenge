@@ -9,7 +9,6 @@ package de.exxcellent.challenge.records;
  * It provides a method for calculating the absolute difference (spread) between the maximum and minimum temperatures.
  */
 public record WeatherRecord(int day, double maxTemp, double minTemp) implements SpreadCalculable {
-
     /**
      * Calculates the temperature spread between the maximum and minimum temperature.
      *
@@ -19,5 +18,4 @@ public record WeatherRecord(int day, double maxTemp, double minTemp) implements 
     public double getSpread() {
         return Math.abs(maxTemp - minTemp);
     }
-
 }

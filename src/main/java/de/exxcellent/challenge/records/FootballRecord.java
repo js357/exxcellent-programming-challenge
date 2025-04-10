@@ -9,7 +9,6 @@ package de.exxcellent.challenge.records;
  * It provides a method for calculating the absolute goal difference (spread) between the goals scored and allowed.
  */
 public record FootballRecord(String team, int scoredGoals, int allowedGoals) implements SpreadCalculable {
-
     /**
      * Calculates the absolute goal difference between scored and allowed goals.
      *

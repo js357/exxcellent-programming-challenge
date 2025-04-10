@@ -13,7 +13,6 @@ import java.util.List;
  * specific attributes.
  */
 public class DataAnalyzer {
-
     /**
      * Finds the data with the smallest spread (difference between maximum and minimum) from a list of records.
      * The method calculates the spread (using the {@link SpreadCalculable#getSpread()} method) for each record
@@ -38,5 +37,4 @@ public class DataAnalyzer {
         }
         return elementWithSmallestSpread;
     }
-
 }

@@ -51,20 +51,18 @@ public class CSVDataReader {
                 .withSkipLines(1)
                 .build()) {
             String[] line;
-            while ((line = csvReader.readNext()) != null) {
 
+            while ((line = csvReader.readNext()) != null) {
                 if(_class.equals(WeatherRecord.class)) {
                     int day = Integer.parseInt(line[DAY_COLUMN]);
                     double maxTemp = Double.parseDouble(line[MAX_TEMP_COLUMN]);
                     double minTemp = Double.parseDouble(line[MIN_TEMP_COLUMN]);
-
                     records.add(_class.cast(new WeatherRecord(day, maxTemp, minTemp)));
                 }
                 else if(_class.equals(FootballRecord.class)) {
                     String team = line[TEAM_COLUMN];
                     int scoredGoals = Integer.parseInt(line[SCORED_GOALS_COLUMN]);
                     int allowedGoals = Integer.parseInt(line[ALLOWED_GOALS_COLUMN]);
-
                     records.add(_class.cast(new FootballRecord(team, scoredGoals, allowedGoals)));
                 }
             }
