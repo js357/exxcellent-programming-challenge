@@ -25,7 +25,7 @@ public class DataAnalyzer {
      *         instances of {@link WeatherRecord}, or the team name for {@link FootballRecord}.
      *         Returns {@code null} if no valid records are provided or no smallest spread is found.
      */
-    public static <T extends SpreadCalculable> String findDataWithSmallestSpread(List<T> records) {
+    public static <T extends SpreadCalculable> T findDataWithSmallestSpread(List<T> records) {
         T elementWithSmallestSpread = null;
         double smallestSpread = Double.MAX_VALUE;
 
@@ -36,13 +36,7 @@ public class DataAnalyzer {
                 elementWithSmallestSpread = record;
             }
         }
-
-        if (elementWithSmallestSpread instanceof WeatherRecord) {
-            return String.valueOf(((WeatherRecord) elementWithSmallestSpread).day());
-        } else if (elementWithSmallestSpread instanceof FootballRecord) {
-            return ((FootballRecord) elementWithSmallestSpread).team();
-        }
-        return null;
+        return elementWithSmallestSpread;
     }
 
 }
