@@ -5,36 +5,10 @@ package de.exxcellent.challenge.records;
  *
  * <p>The {@code WeatherRecord} class stores information about a specific day of the month, the maximum temperature,
  * and the minimum temperature.
- * This class extends {@link BaseRecord} and implements the {@link SpreadCalculable} interface.
+ * This class implements the {@link SpreadCalculable} interface.
  * It provides a method for calculating the absolute difference (spread) between the maximum and minimum temperatures.
  */
-public class WeatherRecord extends BaseRecord {
-
-    private final int day;
-    private final double maxTemp;
-    private final double minTemp;
-
-    /**
-     * Constructs a {@link WeatherRecord} with the given day, maximum and minimum temperature.
-     *
-     * @param day The day of the record.
-     * @param maxTemp The maximum temperature recorded for the given day.
-     * @param minTemp The minimum temperature recorded for the given day.
-     */
-    public WeatherRecord(int day, double maxTemp, double minTemp) {
-        this.day = day;
-        this.maxTemp = maxTemp;
-        this.minTemp = minTemp;
-    }
-
-    /**
-     * Gets the day associated with this weather record.
-     *
-     * @return The day of the record as an {@code int}.
-     */
-    public int getDay() {
-        return day;
-    }
+public record WeatherRecord(int day, double maxTemp, double minTemp) implements SpreadCalculable {
 
     /**
      * Calculates the temperature spread between the maximum and minimum temperature.

@@ -3,8 +3,8 @@ package de.exxcellent.challenge.dataprocessing;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
-import de.exxcellent.challenge.records.BaseRecord;
 import de.exxcellent.challenge.records.FootballRecord;
+import de.exxcellent.challenge.records.SpreadCalculable;
 import de.exxcellent.challenge.records.WeatherRecord;
 
 import java.io.FileReader;
@@ -40,11 +40,11 @@ public class CSVDataReader {
      * The header row is excluded.
      *
      * @param fileName The name of the CSV file containing the data appropriate for the specified class type.
-     * @param _class The class type {@code <T>} of the record that extends {@link BaseRecord}.
+     * @param _class The class type {@code <T>} of the record that extends {@link SpreadCalculable}.
      * @return A list of record objects of the specified class type representing the csv data.
      * @throws IOException If an I/O error occurs while reading the file.
      */
-    public static <T extends BaseRecord> List<T> readData(String fileName, Class<T> _class) throws IOException {
+    public static <T extends SpreadCalculable> List<T> readData(String fileName, Class<T> _class) throws IOException {
         List<T> records = new ArrayList<>();
 
         try(CSVReader csvReader = new CSVReaderBuilder(new FileReader(fileName))
